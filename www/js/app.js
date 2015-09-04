@@ -9,19 +9,23 @@ angular.module('howManyFloppiesApp', ['ionic'])
       .state('home', {
         url: '/',
         views: {
-          'main':{
+          'main': {
             templateUrl: 'app/views/home.html',
-            controller: 'HomeCtrl as home' 
+            controller: 'HomeCtrl as home'
           }
-        }        
+        }
       })
       .state('results', {
         url: '/results',
-        templateUrl: 'app/views/results.html',
-        controller: 'ResultsCtrl as results'
+        views: {
+          'main': {
+            templateUrl: 'app/views/results.html',
+            controller: 'ResultsCtrl as results'
+          }
+        }
       });
-      
-      $urlRouterProvider.otherwise('/');
+
+    $urlRouterProvider.otherwise('/');
   })
   .run(function ($ionicPlatform, $state) {
     $ionicPlatform.ready(function () {

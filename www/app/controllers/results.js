@@ -1,8 +1,11 @@
-'use strict';
+(function () {
+	'use strict';
 
-angular.module('howManyFloppiesApp')
-	.controller('ResultsCtrl', function(){
+	angular.module('howManyFloppiesApp').controller('ResultsCtrl', ['dataFactory', ResultsCtrl]);
+
+	function ResultsCtrl(dataFactory) {
 		var self = this;
-		
-		self.answer = 42;
-	});
+
+		self.items = dataFactory.getItems();
+	}
+})();
