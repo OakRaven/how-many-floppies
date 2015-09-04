@@ -1,0 +1,26 @@
+div.home-view .title {
+	font-family: 'Lobster', cursive;
+	font-size: 34pt;
+}
+
+div.home-view input[type=text]{
+	font-size: 2em;
+	height: 1.75em;
+	border: 1px solid #ccc;
+	width: 100%;
+	text-align: right;
+	padding-right: 0.5em;
+}
+
+div.home-view select {
+	padding-left: 0.5em;
+	-webkit-appearance:none;
+	font-size: 2em;
+	height: 1.75em;
+	line-height: 1.75em;
+	width: 100%;
+}
+
+div.home-view button {
+	font-size: 1.5em;
+}
