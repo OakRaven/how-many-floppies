@@ -1,0 +1,39 @@
+<ion-content>
+	<div class="row">
+		<div class="col">
+			<p>{{results.quantity | number:0}} {{results.selectedUnit.label}} 
+			would be a whopping {{results.result.floppyCount | number:0}}
+			{{results.selectedDisk.label}} floppy disks.</p>
+			<p>
+				To put that into perspective, that would be an incredible
+				{{results.weight | number:2}} {{results.weightUnit}}.
+			</p>
+			<p>
+				If placed end-to-end, they would span 
+				{{results.distance | number:2}} {{results.distanceUnit}}!
+			</p>
+		</div>
+	</div>
+	<div class="row" class="results">
+		<div class="col">
+			<ion-slide-box on-slide-changed="slideHasChanged($index)"
+				does-continue="true" active-slide="results.slide">
+				<ion-slide ng-repeat="item in results.items" class="result-item">
+					That would be approximately the same weight as {{(results.result.weight / item.weight)|number:0}}
+					{{item | itemPluralizeFilter:results.result.weight }}!
+					<img ng-src="img/{{item.image}}" style="width: 100%;" />
+				</ion-slide>
+			</ion-slide-box>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<ion-toggle ng-model="results.isMetric" toggle-class="toggle-calm">Metric units?</ion-toggle>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<a style="font-size: 1.5em;" href="#/" class="button button-full button-positive">Back</a>
+		</div>
+	</div>
+</ion-content>

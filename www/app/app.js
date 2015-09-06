@@ -10,16 +10,16 @@ angular.module('howManyFloppiesApp', ['ionic'])
         url: '/',
         views: {
           'main': {
-            templateUrl: 'app/views/home.html',
+            templateUrl: 'app/home/home.html',
             controller: 'HomeCtrl as home'
           }
         }
       })
       .state('results', {
-        url: '/results',
+        url: '/results/:quantity/:unit/:disk',
         views: {
           'main': {
-            templateUrl: 'app/views/results.html',
+            templateUrl: 'app/results/results.html',
             controller: 'ResultsCtrl as results'
           }
         }
