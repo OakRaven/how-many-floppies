@@ -1,9 +1,16 @@
+/* global angular */
+
 (function () {
 	'use strict';
+
+	var kgInLbs = 0.453592;
+	var kmInMiles = 1.60934;
 
 	angular.module('howManyFloppiesApp')
 		.filter('itemFilter', itemFilter)
 		.filter('itemPluralizeFilter', itemPluralizeFilter)
+		.filter('massUnitConversion', ['$filter', massUnitConversion])
+		.filter('distanceUnitConversion', ['$filter', distanceUnitConversion])
 		.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataFactory', 'calculatorFactory', ResultsCtrl]);
 
 	function itemFilter() {
@@ -28,11 +35,30 @@
 		};
 	}
 
+	function massUnitConversion($filter) {
+		return function (amount, isMetric) {
+			if (isMetric) {
+				return $filter('number')(amount, 0) + ' kilograms';
+			} else {
+				return $filter('number')(amount / kgInLbs, 0) + ' pounds';
+			}
+		}
+	}
+
+	function distanceUnitConversion($filter) {
+		return function (amount, isMetric) {
+			if (isMetric) {
+				return $filter('number')(amount, 0) + ' kilometers';
+			} else {
+				return $filter('number')(amount / kmInMiles, 0) + ' miles';
+			}
+		}
+	}
+
 	function ResultsCtrl($scope, $stateParams, $filter, dataFactory, calculatorFactory) {
 		var self = this;
-		var kgInLbs = 0.453592;
-		var kmInMiles = 1.60934;
 
+		self.items = [];
 		self.quantity = $stateParams.quantity;
 		self.weightUnit = 'kilograms';
 		self.distanceUnit = 'kilometers';
@@ -42,31 +68,25 @@
 
 		self.isMetric = true;
 
-		var calculate = function () {
-			var result = calculatorFactory.calculate(self.selectedDisk, self.quantity, self.selectedUnit);
+		var result = calculatorFactory.calculate(self.selectedDisk, self.quantity, self.selectedUnit);
 
-			self.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
+		self.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
 
-			self.slide = Math.floor(Math.random() * self.items.length);
-			self.item = self.items[self.slide];
+		self.slide = Math.floor(Math.random() * self.items.length);
+		self.item = self.items[self.slide];
 
-			if (!self.isMetric) {
-				self.weight = result.weight / kgInLbs;
-				self.distance = result.distance / kmInMiles;
-				self.weightUnit = 'pounds';
-				self.distanceUnit = 'miles';
-			} else {
-				self.weight = result.weight;
-				self.distance = result.distance;
-				self.weightUnit = 'kilograms';
-				self.distanceUnit = 'kilometers';
-			}
+		if (!self.isMetric) {
+			self.weight = result.weight / kgInLbs;
+			self.distance = result.distance / kmInMiles;
+			self.weightUnit = 'pounds';
+			self.distanceUnit = 'miles';
+		} else {
+			self.weight = result.weight;
+			self.distance = result.distance;
+			self.weightUnit = 'kilograms';
+			self.distanceUnit = 'kilometers';
+		}
 
-			self.result = result;
-		};
-
-		calculate();
-
-		$scope.$watch(function () { return self.isMetric; }, function () { calculate(); });
+		self.result = result;
 	};
 })();

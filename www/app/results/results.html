@@ -6,11 +6,11 @@
 			{{results.selectedDisk.label}} floppy disks.</p>
 			<p>
 				To put that into perspective, that would be an incredible
-				{{results.weight | number:2}} {{results.weightUnit}}.
+				{{results.weight | massUnitConversion:results.isMetric}}.
 			</p>
 			<p>
 				If placed end-to-end, they would span 
-				{{results.distance | number:2}} {{results.distanceUnit}}!
+				{{results.distance | distanceUnitConversion:results.isMetric}}!
 			</p>
 		</div>
 	</div>
