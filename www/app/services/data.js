@@ -29,7 +29,7 @@
 
 		self.getUnits = function () {
 			return [
-				{ id: 1, label: 'MB', bytes: Math.pow(1024, 2) },
+				// { id: 1, label: 'MB', bytes: Math.pow(1024, 2) },
 				{ id: 2, label: 'GB', bytes: Math.pow(1024, 3) },
 				{ id: 3, label: 'TB', bytes: Math.pow(1024, 4) }
 			];

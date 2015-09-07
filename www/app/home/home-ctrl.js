@@ -10,16 +10,18 @@
 
 		self.title = 'How Many Floppies?';
 		
-		self.units = dataFactory.getUnits();
-		self.selectedUnit = self.units[1];
+		var units = dataFactory.getUnits();
+		self.units = units;
+		self.selectedUnit = units[0].id;
 		
 		self.quantity = 128;
 		
-		self.disks = dataFactory.getDisks();
-		self.selectedDisk = self.disks[0];
-
+		var disks = dataFactory.getDisks();
+		self.disks = disks;
+		self.selectedDisk = disks[0].id;
+		
 		self.calculate = function () {
-			$state.go('results', {quantity: self.quantity, unit: self.selectedUnit.id, disk: self.selectedDisk.id});
+			$state.go('results', {quantity: self.quantity, unit: self.selectedUnit, disk: self.selectedDisk});
 		};
 	}
 })();

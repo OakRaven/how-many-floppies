@@ -10,8 +10,7 @@
 			<div class="col">
 				Units:<br />
 				<select ng-model="home.selectedUnit"
-					ng-options="unit.label for unit in home.units">
-					<option></option>
+					ng-options="unit.id as unit.label for unit in home.units">
 				</select>
 			</div>
 		</div>
@@ -25,8 +24,7 @@
 			<div class="col">
 				<select name="selectedDisk" style="font-size: 1.5em;"
 					ng-model="home.selectedDisk"
-					ng-options="disk.label for disk in home.disks">
-					<option></option>
+					ng-options="disk.id as disk.label for disk in home.disks">
 				</select>
 			</div>
 		</div>
