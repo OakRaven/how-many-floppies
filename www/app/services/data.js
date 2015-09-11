@@ -1,4 +1,10 @@
 /// <reference path="../../../typings/tsd.d.ts" />
+'use strict';
+angular.module('howManyFloppiesApp')
+    .factory('dataFactory', [dataFactory]);
+function dataFactory() {
+    return new DataFactory();
+}
 var DataFactory = (function () {
     function DataFactory() {
     }
@@ -30,4 +36,3 @@ var DataFactory = (function () {
     };
     return DataFactory;
 })();
-angular.module('howManyFloppiesApp').service('dataFactory', [DataFactory]);

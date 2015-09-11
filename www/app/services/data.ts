@@ -1,5 +1,10 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
+'use strict';
+
+angular.module('howManyFloppiesApp')
+	.factory('dataFactory', [dataFactory]);
+
 interface ComparisonObject {
 	id: number;
 	name: string;
@@ -21,7 +26,11 @@ interface SizeUnit {
 	bytes: number
 }
 
-class DataService {
+function dataFactory(): DataFactory {
+	return new DataFactory();
+}
+
+class DataFactory {
 	public getItems(): Array<ComparisonObject> {
 		return [
 			{ id: 1, name: 'mid size car', weight: 1461.021, image: 'car.png' },
@@ -51,5 +60,3 @@ class DataService {
 		];
 	}
 }
-
-angular.module('howManyFloppiesApp').service('dataService', [DataService]);

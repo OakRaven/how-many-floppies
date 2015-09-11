@@ -11,7 +11,7 @@
 		.filter('itemPluralizeFilter', itemPluralizeFilter)
 		.filter('massUnitConversion', ['$filter', massUnitConversion])
 		.filter('distanceUnitConversion', ['$filter', distanceUnitConversion])
-		.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorFactory', ResultsCtrl]);
+		.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataFactory', 'calculatorFactory', ResultsCtrl]);
 
 	function itemFilter() {
 		return function (input, floppyWeight) {
@@ -55,7 +55,7 @@
 		}
 	}
 
-	function ResultsCtrl($scope, $stateParams, $filter, dataService, calculatorFactory) {
+	function ResultsCtrl($scope, $stateParams, $filter, dataFactory, calculatorFactory) {
 		var self = this;
 
 		self.items = [];
@@ -63,14 +63,14 @@
 		self.weightUnit = 'kilograms';
 		self.distanceUnit = 'kilometers';
 
-		self.selectedDisk = $filter('filter')(dataService.getDisks(), { id: $stateParams.disk })[0];
-		self.selectedUnit = $filter('filter')(dataService.getUnits(), { id: $stateParams.unit })[0];
+		self.selectedDisk = $filter('filter')(dataFactory.getDisks(), { id: $stateParams.disk })[0];
+		self.selectedUnit = $filter('filter')(dataFactory.getUnits(), { id: $stateParams.unit })[0];
 
 		self.isMetric = true;
 
 		var result = calculatorFactory.calculate(self.selectedDisk, self.quantity, self.selectedUnit);
 
-		self.items = $filter('itemFilter')(dataService.getItems(), result.weight);
+		self.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
 
 		self.slide = Math.floor(Math.random() * self.items.length);
 		self.item = self.items[self.slide];

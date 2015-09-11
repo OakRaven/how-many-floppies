@@ -1,27 +1,23 @@
-/* globals angular */
-
-(function () {
-	'use strict';
-
-	angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
-
-	function HomeCtrl($state, dataService) {
-		var self = this;
-
-		self.title = 'How Many Floppies?';
-		
-		var units = dataService.getUnits();
-		self.units = units;
-		self.selectedUnit = units[0].id;
-		
-		self.quantity = 128;
-		
-		var disks = dataService.getDisks();
-		self.disks = disks;
-		self.selectedDisk = disks[0].id;
-		
-		self.calculate = function () {
-			$state.go('results', {quantity: self.quantity, unit: self.selectedUnit, disk: self.selectedDisk});
-		};
-	}
+/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../services/data.ts" />
+'use strict';
+angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataFactory', homeCtrl]);
+function homeCtrl($state, dataFactory) {
+    return new HomeCtrl($state, dataFactory);
+}
+var HomeCtrl = (function () {
+    function HomeCtrl($state, dataFactory) {
+        this.$state = $state;
+        this.dataFactory = dataFactory;
+        this.title = 'How Many Floppies?';
+        this.units = dataFactory.getUnits();
+        this.disks = dataFactory.getDisks();
+        this.selectedUnit = this.units[0].id;
+        this.selectedDisk = this.disks[0].id;
+        this.quantity = 128;
+    }
+    HomeCtrl.prototype.calculate = function () {
+        this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
+    };
+    return HomeCtrl;
 })();
