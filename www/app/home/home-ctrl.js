@@ -3,20 +3,20 @@
 (function () {
 	'use strict';
 
-	angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataFactory', HomeCtrl]);
+	angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
 
-	function HomeCtrl($state, dataFactory) {
+	function HomeCtrl($state, dataService) {
 		var self = this;
 
 		self.title = 'How Many Floppies?';
 		
-		var units = dataFactory.getUnits();
+		var units = dataService.getUnits();
 		self.units = units;
 		self.selectedUnit = units[0].id;
 		
 		self.quantity = 128;
 		
-		var disks = dataFactory.getDisks();
+		var disks = dataService.getDisks();
 		self.disks = disks;
 		self.selectedDisk = disks[0].id;
 		
