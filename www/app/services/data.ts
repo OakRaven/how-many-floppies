@@ -1,18 +1,13 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-
 'use strict';
 
-angular.module('howManyFloppiesApp')
-	.factory('dataFactory', [dataFactory]);
-
-interface ComparisonObject {
+interface IComparisonItem {
 	id: number;
 	name: string;
 	weight: number;
 	image: string;
 }
 
-interface Diskette {
+interface IDiskette {
 	id: number;
 	label: string;
 	length: number;
@@ -20,18 +15,21 @@ interface Diskette {
 	capacity: number;
 }
 
-interface SizeUnit {
+interface ISizeUnit {
 	id: number;
 	label: string;
 	bytes: number
 }
 
-function dataFactory(): DataFactory {
-	return new DataFactory();
+interface IDataService {
+	getItems() : IComparisonItem[];
+	getDisks() : IDiskette[];
+	getUnits() : ISizeUnit[];
 }
 
-class DataFactory {
-	public getItems(): Array<ComparisonObject> {
+
+class DataService implements IDataService {
+	getItems(): IComparisonItem[] {
 		return [
 			{ id: 1, name: 'mid size car', weight: 1461.021, image: 'car.png' },
 			{ id: 2, name: 'African elephant', weight: 6985.3225, image: 'elephant.jpg' },
@@ -43,7 +41,7 @@ class DataFactory {
 		];
 	}
 
-	public getDisks(): Array<Diskette> {
+	getDisks(): IDiskette[] {
 		// floppy disk metrics from https://www.staff.ncl.ac.uk/roger.broughton/museum/floppys
 		return [
 			{ id: 1, label: '3.5" floppy', length: 93, weight: 19, capacity: 1.44 },
@@ -52,7 +50,7 @@ class DataFactory {
 		];
 	}
 
-	public getUnits(): Array<SizeUnit> {
+	getUnits(): ISizeUnit[] {
 		return [
 			// { id: 1, label: 'MB', bytes: Math.pow(1024, 2) },
 			{ id: 2, label: 'GB', bytes: Math.pow(1024, 3) },
@@ -60,3 +58,5 @@ class DataFactory {
 		];
 	}
 }
+
+angular.module('howManyFloppiesApp').service('dataService', [DataService]);

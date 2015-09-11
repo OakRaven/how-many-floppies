@@ -1,14 +1,8 @@
-/// <reference path="../../../typings/tsd.d.ts" />
 'use strict';
-angular.module('howManyFloppiesApp')
-    .factory('dataFactory', [dataFactory]);
-function dataFactory() {
-    return new DataFactory();
-}
-var DataFactory = (function () {
-    function DataFactory() {
+var DataService = (function () {
+    function DataService() {
     }
-    DataFactory.prototype.getItems = function () {
+    DataService.prototype.getItems = function () {
         return [
             { id: 1, name: 'mid size car', weight: 1461.021, image: 'car.png' },
             { id: 2, name: 'African elephant', weight: 6985.3225, image: 'elephant.jpg' },
@@ -19,7 +13,7 @@ var DataFactory = (function () {
             { id: 7, name: 'killer whale', weight: 2468.903, image: 'orca.jpg' }
         ];
     };
-    DataFactory.prototype.getDisks = function () {
+    DataService.prototype.getDisks = function () {
         // floppy disk metrics from https://www.staff.ncl.ac.uk/roger.broughton/museum/floppys
         return [
             { id: 1, label: '3.5" floppy', length: 93, weight: 19, capacity: 1.44 },
@@ -27,12 +21,13 @@ var DataFactory = (function () {
             { id: 3, label: '5.25" floppy (high density)', length: 133, weight: 12, capacity: 1.2 },
         ];
     };
-    DataFactory.prototype.getUnits = function () {
+    DataService.prototype.getUnits = function () {
         return [
             // { id: 1, label: 'MB', bytes: Math.pow(1024, 2) },
             { id: 2, label: 'GB', bytes: Math.pow(1024, 3) },
             { id: 3, label: 'TB', bytes: Math.pow(1024, 4) }
         ];
     };
-    return DataFactory;
+    return DataService;
 })();
+angular.module('howManyFloppiesApp').service('dataService', [DataService]);

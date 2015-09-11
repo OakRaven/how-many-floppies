@@ -1,17 +1,11 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="../services/data.ts" />
 'use strict';
-angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataFactory', homeCtrl]);
-function homeCtrl($state, dataFactory) {
-    return new HomeCtrl($state, dataFactory);
-}
 var HomeCtrl = (function () {
-    function HomeCtrl($state, dataFactory) {
+    function HomeCtrl($state, dataService) {
         this.$state = $state;
-        this.dataFactory = dataFactory;
+        this.dataService = dataService;
         this.title = 'How Many Floppies?';
-        this.units = dataFactory.getUnits();
-        this.disks = dataFactory.getDisks();
+        this.units = dataService.getUnits();
+        this.disks = dataService.getDisks();
         this.selectedUnit = this.units[0].id;
         this.selectedDisk = this.disks[0].id;
         this.quantity = 128;
@@ -21,3 +15,4 @@ var HomeCtrl = (function () {
     };
     return HomeCtrl;
 })();
+angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);

@@ -1,24 +1,23 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="data.ts" />
-
 'use strict';
 
-angular.module('howManyFloppiesApp')
-	.factory('calculatorFactory', [calculatorFactory]);
-
-interface Answer {
+interface IAnswer {
 	bytes: number;
 	floppyCount: number;
 	weight: number;
 	distance: number;
 }
 
-function calculatorFactory(): CalculatorFactory {
-	return new CalculatorFactory();
+class Answer implements IAnswer {
+	constructor(public bytes: number, public floppyCount: number,
+		public weight: number, public distance: number) { }
 }
 
-class CalculatorFactory {
-	public calculate(disk: Diskette, quantity: number, unit: SizeUnit): Answer {
+interface ICalculatorService {
+	calculate(IDiskette, number, ISizeUnit): IAnswer;
+}
+
+class CalculatorService implements ICalculatorService {
+	calculate(disk: IDiskette, quantity: number, unit: ISizeUnit): IAnswer {
 		var bytesInMb = Math.pow(1024, 2);
 		var gramsInKg = 1000;
 		var milimetersInKm = 1000 * 1000;
@@ -27,11 +26,9 @@ class CalculatorFactory {
 		var floppyCount = totalBytes / (disk.capacity * bytesInMb);
 		var weightInKg = floppyCount * disk.weight / gramsInKg;
 
-		return {
-			bytes: totalBytes,
-			floppyCount: floppyCount,
-			weight: weightInKg,
-			distance: floppyCount * disk.length / milimetersInKm
-		};
+		return new Answer(totalBytes, floppyCount, weightInKg, floppyCount * disk.length / milimetersInKm);
 	}
 }
+
+angular.module('howManyFloppiesApp')
+	.service('calculatorService', [CalculatorService]);

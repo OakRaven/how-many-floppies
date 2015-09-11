@@ -1,32 +1,36 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-/// <reference path="../services/data.ts" />
-
 'use strict';
 
-angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataFactory', homeCtrl]);
-
-function homeCtrl($state, dataFactory): HomeCtrl {
-	return new HomeCtrl($state, dataFactory);
+interface IHomeCtrl {
+	title: string;
+	units: ISizeUnit[];
+	disks: IDiskette[];
+	selectedUnit: number;
+	selectedDisk: number;
+	quantity: number;
+	
+	calculate() :void;	
 }
 
-class HomeCtrl {
-	private title: string;
-	private units: Array<SizeUnit>;
-	private disks: Array<Diskette>;
-	private selectedUnit: number;
-	private selectedDisk: number;
-	private quantity: number;
-	
-	constructor(private $state, private dataFactory){
+class HomeCtrl implements IHomeCtrl {
+	title: string;
+	units: Array<ISizeUnit>;
+	disks: Array<IDiskette>;
+	selectedUnit: number;
+	selectedDisk: number;
+	quantity: number;
+
+	constructor(private $state, private dataService) {
 		this.title = 'How Many Floppies?';
-		this.units = dataFactory.getUnits();
-		this.disks = dataFactory.getDisks();
+		this.units = dataService.getUnits();
+		this.disks = dataService.getDisks();
 		this.selectedUnit = this.units[0].id;
 		this.selectedDisk = this.disks[0].id;
 		this.quantity = 128;
 	}
-	
-	public calculate() : void {
-		this.$state.go('results', {quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk});
+
+	public calculate(): void {
+		this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
 	}
 }
+
+angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
