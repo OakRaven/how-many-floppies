@@ -65,51 +65,5 @@ class ResultsCtrl implements IResultsCtrl {
 	}
 }
 
-function itemFilter() {
-	return (input, floppyWeight) => {
-		var output = [];
-		angular.forEach(input, function(item) {
-			if (floppyWeight / item.weight >= 1.0) {
-				output.push(item);
-			}
-		});
-
-		return output;
-	};
-}
-
-function itemPluralizeFilter() {
-	return (item, floppyWeight) => {
-		if (Math.round(floppyWeight / item.weight) === 1) {
-			return item.name;
-		}
-		return item.name + 's';
-	};
-}
-
-function massUnitConversion($filter) {
-	return (amount, isMetric) => {
-		if (isMetric) {
-			return $filter('number')(amount, 0) + ' kilograms';
-		} else {
-			return $filter('number')(amount / kgInLbs, 0) + ' pounds';
-		}
-	}
-}
-
-function distanceUnitConversion($filter) {
-	return (amount, isMetric) => {
-		if (isMetric) {
-			return $filter('number')(amount, 0) + ' kilometers';
-		} else {
-			return $filter('number')(amount / kmInMiles, 0) + ' miles';
-		}
-	}
-}
-
 angular.module('howManyFloppiesApp')
-	.filter('itemFilter', itemFilter)
-	.filter('itemPluralizeFilter', itemPluralizeFilter)
-	.filter('massUnitConversion', ['$filter', massUnitConversion])
-	.filter('distanceUnitConversion', ['$filter', distanceUnitConversion])
 	.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', ResultsCtrl]);
