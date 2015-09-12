@@ -21,24 +21,24 @@ var filters;
         };
     }
     filters.itemPluralizeFilter = itemPluralizeFilter;
-    function massUnitConversion($filter) {
+    function massUnitConversion($filter, conversions) {
         return function (amount, isMetric) {
             if (isMetric) {
                 return $filter('number')(amount, 0) + ' kilograms';
             }
             else {
-                return $filter('number')(amount / kgInLbs, 0) + ' pounds';
+                return $filter('number')(amount / conversions.kgInLbs, 0) + ' pounds';
             }
         };
     }
     filters.massUnitConversion = massUnitConversion;
-    function distanceUnitConversion($filter) {
+    function distanceUnitConversion($filter, conversions) {
         return function (amount, isMetric) {
             if (isMetric) {
                 return $filter('number')(amount, 0) + ' kilometers';
             }
             else {
-                return $filter('number')(amount / kmInMiles, 0) + ' miles';
+                return $filter('number')(amount / conversions.kmInMiles, 0) + ' miles';
             }
         };
     }
@@ -47,5 +47,5 @@ var filters;
 angular.module('howManyFloppiesApp')
     .filter('itemFilter', filters.itemFilter)
     .filter('itemPluralizeFilter', filters.itemPluralizeFilter)
-    .filter('massUnitConversion', ['$filter', filters.massUnitConversion])
-    .filter('distanceUnitConversion', ['$filter', filters.distanceUnitConversion]);
+    .filter('massUnitConversion', ['$filter', 'conversions', filters.massUnitConversion])
+    .filter('distanceUnitConversion', ['$filter', 'conversions', filters.distanceUnitConversion]);

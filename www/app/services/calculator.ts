@@ -1,34 +1,25 @@
 'use strict';
 
-interface IAnswer {
-	bytes: number;
-	floppyCount: number;
-	weight: number;
-	distance: number;
-}
+module services {
+	interface ICalculatorService {
+		calculate(IDiskette, number, ISizeUnit): models.IAnswer;
+	}
 
-class Answer implements IAnswer {
-	constructor(public bytes: number, public floppyCount: number,
-		public weight: number, public distance: number) { }
-}
+	export class CalculatorService implements ICalculatorService {
+		calculate(disk: models.IDiskette, quantity: number, unit: models.ISizeUnit): models.IAnswer {
+			var bytesInMb = Math.pow(1024, 2);
+			var gramsInKg = 1000;
+			var milimetersInKm = 1000 * 1000;
 
-interface ICalculatorService {
-	calculate(IDiskette, number, ISizeUnit): IAnswer;
-}
+			var totalBytes = quantity * unit.bytes;
+			var floppyCount = totalBytes / (disk.capacity * bytesInMb);
+			var weightInKg = floppyCount * disk.weight / gramsInKg;
 
-class CalculatorService implements ICalculatorService {
-	calculate(disk: IDiskette, quantity: number, unit: ISizeUnit): IAnswer {
-		var bytesInMb = Math.pow(1024, 2);
-		var gramsInKg = 1000;
-		var milimetersInKm = 1000 * 1000;
-
-		var totalBytes = quantity * unit.bytes;
-		var floppyCount = totalBytes / (disk.capacity * bytesInMb);
-		var weightInKg = floppyCount * disk.weight / gramsInKg;
-
-		return new Answer(totalBytes, floppyCount, weightInKg, floppyCount * disk.length / milimetersInKm);
+			return new models.Answer(totalBytes, floppyCount, weightInKg, floppyCount * disk.length / milimetersInKm);
+		}
 	}
 }
 
 angular.module('howManyFloppiesApp')
-	.service('calculatorService', [CalculatorService]);
+	.service('calculatorService', [services.CalculatorService])
+	.constant('conversions', {kgInLbs: 0.453592, kmInMiles: 1.60934});

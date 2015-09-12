@@ -1,4 +1,5 @@
 module filters {
+	
 	export function itemFilter() {
 		return (input, floppyWeight) => {
 			var output = [];
@@ -21,22 +22,22 @@ module filters {
 		};
 	}
 
-	export function massUnitConversion($filter) {
+	export function massUnitConversion($filter, conversions) {
 		return (amount, isMetric) => {
 			if (isMetric) {
 				return $filter('number')(amount, 0) + ' kilograms';
 			} else {
-				return $filter('number')(amount / kgInLbs, 0) + ' pounds';
+				return $filter('number')(amount / conversions.kgInLbs, 0) + ' pounds';
 			}
 		}
 	}
 
-	export function distanceUnitConversion($filter) {
+	export function distanceUnitConversion($filter, conversions) {
 		return (amount, isMetric) => {
 			if (isMetric) {
 				return $filter('number')(amount, 0) + ' kilometers';
 			} else {
-				return $filter('number')(amount / kmInMiles, 0) + ' miles';
+				return $filter('number')(amount / conversions.kmInMiles, 0) + ' miles';
 			}
 		}
 	}
@@ -45,5 +46,5 @@ module filters {
 angular.module('howManyFloppiesApp')
 	.filter('itemFilter', filters.itemFilter)
 	.filter('itemPluralizeFilter', filters.itemPluralizeFilter)
-	.filter('massUnitConversion', ['$filter', filters.massUnitConversion])
-	.filter('distanceUnitConversion', ['$filter', filters.distanceUnitConversion]);
+	.filter('massUnitConversion', ['$filter', 'conversions', filters.massUnitConversion])
+	.filter('distanceUnitConversion', ['$filter', 'conversions', filters.distanceUnitConversion]);
