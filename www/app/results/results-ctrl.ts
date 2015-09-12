@@ -1,19 +1,16 @@
-'use strict';
-
-module controllers {
-
+module app.controllers {
 	interface IResultsCtrl {
 		items: any[];
 		weight: number;
 		weightUnit: string;
 		distance: number;
 		distanceUnit: string;
-		selectedDisk: models.IDiskette;
-		selectedUnit: models.ISizeUnit;
+		selectedDisk: app.domain.IDiskette;
+		selectedUnit: app.domain.ISizeUnit;
 		isMetric: boolean;
 		slide: number;
-		item: models.IComparisonItem;
-		result: models.IAnswer;
+		item: app.domain.IComparisonItem;
+		result: app.domain.IAnswer;
 	}
 
 	export class ResultsCtrl implements IResultsCtrl {
@@ -22,12 +19,12 @@ module controllers {
 		weightUnit: string;
 		distance: number;
 		distanceUnit: string;
-		selectedDisk: models.IDiskette;
-		selectedUnit: models.ISizeUnit;
+		selectedDisk: app.domain.IDiskette;
+		selectedUnit: app.domain.ISizeUnit;
 		isMetric: boolean;
 		slide: number;
-		item: models.IComparisonItem;
-		result: models.IAnswer;
+		item: app.domain.IComparisonItem;
+		result: app.domain.IAnswer;
 
 		constructor($scope, $stateParams, $filter, dataFactory, calculatorService, conversions) {
 			var quantity = $stateParams.quantity;
@@ -63,7 +60,7 @@ module controllers {
 			this.result = result;
 		}
 	}
+	
+	angular.module('howManyFloppiesApp')
+	.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsCtrl]);
 }
-
-angular.module('howManyFloppiesApp')
-	.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', controllers.ResultsCtrl]);

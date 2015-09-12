@@ -1,15 +1,13 @@
-'use strict';
-
-module services {
+module app.services {
 	interface IDataService {
-		getItems(): models.IComparisonItem[];
-		getDisks(): models.IDiskette[];
-		getUnits(): models.ISizeUnit[];
+		getItems(): app.domain.IComparisonItem[];
+		getDisks(): app.domain.IDiskette[];
+		getUnits(): app.domain.ISizeUnit[];
 	}
 
 
 	export class DataService implements IDataService {
-		getItems(): models.IComparisonItem[] {
+		getItems(): app.domain.IComparisonItem[] {
 			return [
 				{ id: 1, name: 'mid size car', weight: 1461.021, image: 'car.png' },
 				{ id: 2, name: 'African elephant', weight: 6985.3225, image: 'elephant.jpg' },
@@ -21,7 +19,7 @@ module services {
 			];
 		}
 
-		getDisks(): models.IDiskette[] {
+		getDisks(): app.domain.IDiskette[] {
 			// floppy disk metrics from https://www.staff.ncl.ac.uk/roger.broughton/museum/floppys
 			return [
 				{ id: 1, label: '3.5" floppy', length: 93, weight: 19, capacity: 1.44 },
@@ -30,7 +28,7 @@ module services {
 			];
 		}
 
-		getUnits(): models.ISizeUnit[] {
+		getUnits(): app.domain.ISizeUnit[] {
 			return [
 				// { id: 1, label: 'MB', bytes: Math.pow(1024, 2) },
 				{ id: 2, label: 'GB', bytes: Math.pow(1024, 3) },
@@ -38,6 +36,6 @@ module services {
 			];
 		}
 	}
+	
+	angular.module('howManyFloppiesApp').service('dataService', [DataService]);
 }
-
-angular.module('howManyFloppiesApp').service('dataService', [services.DataService]);

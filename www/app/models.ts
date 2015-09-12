@@ -1,6 +1,4 @@
-'use strict';
-
-module models {
+module app.domain {
 	export interface IComparisonItem {
 		id: number;
 		name: string;

@@ -1,5 +1,4 @@
-module filters {
-	
+module app.filters {
 	export function itemFilter() {
 		return (input, floppyWeight) => {
 			var output = [];
@@ -41,10 +40,10 @@ module filters {
 			}
 		}
 	}
-}
 
-angular.module('howManyFloppiesApp')
-	.filter('itemFilter', filters.itemFilter)
-	.filter('itemPluralizeFilter', filters.itemPluralizeFilter)
-	.filter('massUnitConversion', ['$filter', 'conversions', filters.massUnitConversion])
-	.filter('distanceUnitConversion', ['$filter', 'conversions', filters.distanceUnitConversion]);
+	angular.module('howManyFloppiesApp')
+		.filter('itemFilter', itemFilter)
+		.filter('itemPluralizeFilter', itemPluralizeFilter)
+		.filter('massUnitConversion', ['$filter', 'conversions', massUnitConversion])
+		.filter('distanceUnitConversion', ['$filter', 'conversions', distanceUnitConversion]);
+}

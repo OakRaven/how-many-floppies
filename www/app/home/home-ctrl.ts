@@ -1,10 +1,8 @@
-'use strict';
-
-module controllers {
+module app.controllers {
 	interface IHomeCtrl {
 		title: string;
-		units: ISizeUnit[];
-		disks: IDiskette[];
+		units: app.domain.ISizeUnit[];
+		disks: app.domain.IDiskette[];
 		selectedUnit: number;
 		selectedDisk: number;
 		quantity: number;
@@ -14,8 +12,8 @@ module controllers {
 
 	export class HomeCtrl implements IHomeCtrl {
 		title: string;
-		units: Array<ISizeUnit>;
-		disks: Array<IDiskette>;
+		units: app.domain.ISizeUnit[];
+		disks: app.domain.IDiskette[];
 		selectedUnit: number;
 		selectedDisk: number;
 		quantity: number;
@@ -33,6 +31,6 @@ module controllers {
 			this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
 		}
 	}
+	
+	angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
 }
-
-angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', controllers.HomeCtrl]);
