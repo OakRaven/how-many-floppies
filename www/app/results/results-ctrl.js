@@ -2,8 +2,8 @@ var app;
 (function (app) {
     var controllers;
     (function (controllers) {
-        var ResultsCtrl = (function () {
-            function ResultsCtrl($scope, $stateParams, $filter, dataFactory, calculatorService, conversions) {
+        var ResultsController = (function () {
+            function ResultsController($scope, $stateParams, $filter, dataFactory, calculatorService, conversions) {
                 var quantity = $stateParams.quantity;
                 this.items = [];
                 this.weightUnit = 'kilograms';
@@ -29,10 +29,10 @@ var app;
                 }
                 this.result = result;
             }
-            return ResultsCtrl;
+            return ResultsController;
         })();
-        controllers.ResultsCtrl = ResultsCtrl;
+        controllers.ResultsController = ResultsController;
         angular.module('howManyFloppiesApp')
-            .controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsCtrl]);
+            .controller('ResultsController', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsController]);
     })(controllers = app.controllers || (app.controllers = {}));
 })(app || (app = {}));

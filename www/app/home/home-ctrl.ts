@@ -1,5 +1,5 @@
 module app.controllers {
-	interface IHomeCtrl {
+	interface IHomeController {
 		title: string;
 		units: app.domain.ISizeUnit[];
 		disks: app.domain.IDiskette[];
@@ -10,7 +10,7 @@ module app.controllers {
 		calculate(): void;
 	}
 
-	export class HomeCtrl implements IHomeCtrl {
+	export class HomeController implements IHomeController {
 		title: string;
 		units: app.domain.ISizeUnit[];
 		disks: app.domain.IDiskette[];
@@ -32,5 +32,5 @@ module app.controllers {
 		}
 	}
 	
-	angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
+	angular.module('howManyFloppiesApp').controller('HomeController', ['$state', 'dataService', HomeController]);
 }

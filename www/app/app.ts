@@ -7,7 +7,7 @@ module app {
           views: {
             'main': {
               templateUrl: 'app/home/home.html',
-              controller: 'HomeCtrl as home'
+              controller: 'HomeController as vm'
             }
           }
         })
@@ -16,7 +16,16 @@ module app {
           views: {
             'main': {
               templateUrl: 'app/results/results.html',
-              controller: 'ResultsCtrl as results'
+              controller: 'ResultsController as vm'
+            }
+          }
+        })
+        .state('settings', {
+          url: '/settings',
+          views: {
+            'main': {
+              templateUrl: 'app/settings/settings.html',
+              controller: 'SettingsController as vm'
             }
           }
         });

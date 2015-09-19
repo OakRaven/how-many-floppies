@@ -1,26 +1,26 @@
 <ion-content>
 	<div class="row">
 		<div class="col">
-			<p>{{results.quantity | number:0}} {{results.selectedUnit.label}} 
-			would be a whopping {{results.result.floppyCount | number:0}}
-			{{results.selectedDisk.label}} floppy disks.</p>
+			<p>{{vm.quantity | number:0}} {{vm.selectedUnit.label}} 
+			would be a whopping {{vm.result.floppyCount | number:0}}
+			{{vm.selectedDisk.label}} floppy disks.</p>
 			<p>
 				To put that into perspective, that would be an incredible
-				{{results.weight | massUnitConversion:results.isMetric}}.
+				{{vm.weight | massUnitConversion:vm.isMetric}}.
 			</p>
 			<p>
 				If placed end-to-end, they would span 
-				{{results.distance | distanceUnitConversion:results.isMetric}}!
+				{{vm.distance | distanceUnitConversion:vm.isMetric}}!
 			</p>
 		</div>
 	</div>
 	<div class="row" class="results">
 		<div class="col">
 			<ion-slide-box on-slide-changed="slideHasChanged($index)"
-				does-continue="true" active-slide="results.slide">
-				<ion-slide ng-repeat="item in results.items" class="result-item">
-					That would be approximately the same weight as {{(results.result.weight / item.weight)|number:0}}
-					{{item | itemPluralizeFilter:results.result.weight }}!
+				does-continue="true" active-slide="vm.slide">
+				<ion-slide ng-repeat="item in vm.items" class="result-item">
+					That would be approximately the same weight as {{(vm.result.weight / item.weight)|number:0}}
+					{{item | itemPluralizeFilter:vm.result.weight }}!
 					<img ng-src="img/{{item.image}}" style="width: 100%;" />
 				</ion-slide>
 			</ion-slide-box>
@@ -28,7 +28,7 @@
 	</div>
 	<div class="row">
 		<div class="col">
-			<ion-toggle ng-model="results.isMetric" toggle-class="toggle-calm">Metric units?</ion-toggle>
+			<ion-toggle ng-model="vm.isMetric" toggle-class="toggle-calm">Metric units?</ion-toggle>
 		</div>
 	</div>
 	<div class="row">

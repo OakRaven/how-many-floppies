@@ -1,39 +1,48 @@
 <ion-content>
 	<div class="home-view">
-		<h1 class="title">{{home.title}}</h1>
+		<h1 class="title">{{vm.title}}</h1>
 		<form>
-		<div class="row">
-			<div class="col">
-				Size:<br />
-				<input type="text" ng-model="home.quantity">
+			<div class="row">
+				<div class="col">
+					Size:
+					<br />
+					<input type="text" ng-model="vm.quantity">
+				</div>
+				<div class="col">
+					Units:
+					<br />
+					<select ng-model="vm.selectedUnit" ng-options="unit.id as unit.label for unit in vm.units">
+					</select>
+				</div>
 			</div>
-			<div class="col">
-				Units:<br />
-				<select ng-model="home.selectedUnit"
-					ng-options="unit.id as unit.label for unit in home.units">
-				</select>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col">
-				Diskettes:
+			<div class="row">
+				<div class="col">
+					Diskettes:
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<select name="selectedDisk" style="font-size: 1.5em;"
-					ng-model="home.selectedDisk"
-					ng-options="disk.id as disk.label for disk in home.disks">
-				</select>
+			<div class="row">
+				<div class="col">
+					<select name="selectedDisk" style="font-size: 1.5em;" ng-model="vm.selectedDisk" ng-options="disk.id as disk.label for disk in vm.disks">
+					</select>
+				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col">
-				<a style="font-size: 1.5em;" ng-click="home.calculate()" class="button button-full button-positive">Calculate</a>
+			<div class="row">
+				<div class="col">
+					<a style="font-size: 1.5em;" ng-click="vm.calculate()" class="button button-full button-positive">Calculate</a>
+				</div>
 			</div>
-		</div>
 		</form>
 	</div>
+	<div class="row">
+		<div class="col">
+			<h3>What's a floppy anyway?</h3>
+		</div>
+	</div>
 </ion-content>
+
+
+<div class="bar bar-footer bar-stable">
+	<a href="#/settings" class="button button-icon icon ion-gear-b pull-right"></a>
+</div>

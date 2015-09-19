@@ -2,8 +2,8 @@ var app;
 (function (app) {
     var controllers;
     (function (controllers) {
-        var HomeCtrl = (function () {
-            function HomeCtrl($state, dataService) {
+        var HomeController = (function () {
+            function HomeController($state, dataService) {
                 this.$state = $state;
                 this.dataService = dataService;
                 this.title = 'How Many Floppies?';
@@ -13,12 +13,12 @@ var app;
                 this.selectedDisk = this.disks[0].id;
                 this.quantity = 128;
             }
-            HomeCtrl.prototype.calculate = function () {
+            HomeController.prototype.calculate = function () {
                 this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
             };
-            return HomeCtrl;
+            return HomeController;
         })();
-        controllers.HomeCtrl = HomeCtrl;
-        angular.module('howManyFloppiesApp').controller('HomeCtrl', ['$state', 'dataService', HomeCtrl]);
+        controllers.HomeController = HomeController;
+        angular.module('howManyFloppiesApp').controller('HomeController', ['$state', 'dataService', HomeController]);
     })(controllers = app.controllers || (app.controllers = {}));
 })(app || (app = {}));

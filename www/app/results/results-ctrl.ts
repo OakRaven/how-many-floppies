@@ -1,5 +1,5 @@
 module app.controllers {
-	interface IResultsCtrl {
+	interface IResultsController {
 		items: any[];
 		weight: number;
 		weightUnit: string;
@@ -13,7 +13,7 @@ module app.controllers {
 		result: app.domain.IAnswer;
 	}
 
-	export class ResultsCtrl implements IResultsCtrl {
+	export class ResultsController implements IResultsController {
 		items: any[];
 		weight: number;
 		weightUnit: string;
@@ -62,5 +62,5 @@ module app.controllers {
 	}
 	
 	angular.module('howManyFloppiesApp')
-	.controller('ResultsCtrl', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsCtrl]);
+	.controller('ResultsController', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsController]);
 }

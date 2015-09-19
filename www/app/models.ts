@@ -31,4 +31,8 @@ module app.domain {
 		constructor(public bytes: number, public floppyCount: number,
 			public weight: number, public distance: number) { }
 	}
+	
+	export interface ISettings {
+		units: string;
+	}
 }
