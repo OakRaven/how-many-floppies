@@ -1,4 +1,9 @@
-<ion-content>
+<div class="bar bar-header bar-stable">
+  <button class="button" ng-click="vm.goBack()">Back</button>
+  <h1 class="title">{{vm.title}}</h1>
+</div>
+
+<ion-content class="has-header">
 	<div class="row">
 		<div class="col">
 			<p>{{vm.quantity | number:0}} {{vm.selectedUnit.label}} 
@@ -26,14 +31,8 @@
 			</ion-slide-box>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col">
-			<ion-toggle ng-model="vm.isMetric" toggle-class="toggle-calm">Metric units?</ion-toggle>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<a style="font-size: 1.5em;" href="#/" class="button button-full button-positive">Back</a>
-		</div>
-	</div>
 </ion-content>
+
+<div class="bar bar-footer bar-stable">
+	<a href="#/settings" class="button button-icon icon ion-gear-b pull-right"></a>
+</div>

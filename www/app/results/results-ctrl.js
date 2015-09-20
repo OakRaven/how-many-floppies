@@ -3,19 +3,21 @@ var app;
     var controllers;
     (function (controllers) {
         var ResultsController = (function () {
-            function ResultsController($scope, $stateParams, $filter, dataFactory, calculatorService, conversions) {
-                var quantity = $stateParams.quantity;
+            function ResultsController($scope, $rootScope, $stateParams, $filter, dataFactory, calculatorService, settingsService, conversions) {
+                var _this = this;
+                this.title = "Your Results!";
+                this.isMetric = settingsService.isMetric();
+                this.quantity = $stateParams.quantity;
                 this.items = [];
                 this.weightUnit = 'kilograms';
                 this.distanceUnit = 'kilometers';
                 this.selectedDisk = $filter('filter')(dataFactory.getDisks(), { id: $stateParams.disk })[0];
                 this.selectedUnit = $filter('filter')(dataFactory.getUnits(), { id: $stateParams.unit })[0];
-                this.isMetric = true;
-                var result = calculatorService.calculate(this.selectedDisk, quantity, this.selectedUnit);
+                var result = calculatorService.calculate(this.selectedDisk, this.quantity, this.selectedUnit);
                 this.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
                 this.slide = Math.floor(Math.random() * this.items.length);
                 this.item = this.items[this.slide];
-                if (!this.isMetric) {
+                if (!settingsService.isMetric()) {
                     this.weight = result.weight / conversions.kgInLbs;
                     this.distance = result.distance / conversions.kmInMiles;
                     this.weightUnit = 'pounds';
@@ -28,11 +30,16 @@ var app;
                     this.distanceUnit = 'kilometers';
                 }
                 this.result = result;
+                $rootScope.$on('units-changed', function () {
+                    _this.isMetric = settingsService.isMetric();
+                });
             }
+            ResultsController.prototype.goBack = function () {
+                window.history.back();
+            };
             return ResultsController;
         })();
-        controllers.ResultsController = ResultsController;
         angular.module('howManyFloppiesApp')
-            .controller('ResultsController', ['$scope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'conversions', ResultsController]);
+            .controller('ResultsController', ['$scope', '$rootScope', '$stateParams', '$filter', 'dataService', 'calculatorService', 'settingsService', 'conversions', ResultsController]);
     })(controllers = app.controllers || (app.controllers = {}));
 })(app || (app = {}));

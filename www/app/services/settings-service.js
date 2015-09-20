@@ -16,6 +16,9 @@ var app;
             SettingsService.prototype.setSettings = function (settings) {
                 window.localStorage['settings'] = JSON.stringify(settings);
             };
+            SettingsService.prototype.isMetric = function () {
+                return this.getSettings().units === 'Metric';
+            };
             return SettingsService;
         })();
         angular.module('howManyFloppiesApp')

@@ -2,6 +2,7 @@ module app.services {
 	export interface ISettingsService {
 		getSettings(): app.domain.ISettings;
 		setSettings(settings: app.domain.ISettings) : void;
+		isMetric(): boolean;
 	}
 	
 	class SettingsService implements ISettingsService {
@@ -17,6 +18,10 @@ module app.services {
 		
 		setSettings(settings: app.domain.ISettings) {
 			window.localStorage['settings'] = JSON.stringify(settings);
+		}
+		
+		isMetric() {
+			return this.getSettings().units === 'Metric';
 		}
 		
 	}

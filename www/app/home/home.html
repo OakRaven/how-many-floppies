@@ -18,18 +18,6 @@
 
 			<div class="row">
 				<div class="col">
-					Diskettes:
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<select name="selectedDisk" style="font-size: 1.5em;" ng-model="vm.selectedDisk" ng-options="disk.id as disk.label for disk in vm.disks">
-					</select>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col">
 					<a style="font-size: 1.5em;" ng-click="vm.calculate()" class="button button-full button-positive">Calculate</a>
 				</div>
 			</div>
@@ -41,7 +29,6 @@
 		</div>
 	</div>
 </ion-content>
-
 
 <div class="bar bar-footer bar-stable">
 	<a href="#/settings" class="button button-icon icon ion-gear-b pull-right"></a>
