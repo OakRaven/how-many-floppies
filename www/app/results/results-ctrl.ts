@@ -9,7 +9,6 @@ module app.controllers {
 		quantity: number;
 		selectedDisk: app.domain.IDiskette;
 		selectedUnit: app.domain.ISizeUnit;
-		slide: number;
 		item: app.domain.IComparisonItem;
 		result: app.domain.IAnswer;
 		isMetric: boolean;
@@ -26,7 +25,6 @@ module app.controllers {
 		quantity: number;
 		selectedDisk: app.domain.IDiskette;
 		selectedUnit: app.domain.ISizeUnit;
-		slide: number;
 		item: app.domain.IComparisonItem;
 		result: app.domain.IAnswer;
 		isMetric: boolean;
@@ -48,8 +46,8 @@ module app.controllers {
 
 			this.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
 
-			this.slide = Math.floor(Math.random() * this.items.length);
-			this.item = this.items[this.slide];
+			var randomItemIndex = Math.floor(Math.random() * this.items.length);
+			this.item = this.items[randomItemIndex];
 
 			if (!settingsService.isMetric()) {
 				this.weight = result.weight / conversions.kgInLbs;

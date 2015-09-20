@@ -8,12 +8,12 @@ var app;
             DataService.prototype.getItems = function () {
                 return [
                     { id: 1, name: 'mid size car', weight: 1461.021, image: 'car.png' },
-                    { id: 2, name: 'African elephant', weight: 6985.3225, image: 'elephant.jpg' },
-                    { id: 3, name: 'professional wrestler', weight: 113.398, image: 'wrestler.jpg' },
+                    { id: 2, name: 'African elephant', weight: 6985.3225, image: 'elephant.png' },
+                    { id: 3, name: 'professional wrestler', weight: 113.398, image: 'wrestler.png' },
                     { id: 4, name: 'dairy cow', weight: 680.389, image: 'cow.png' },
-                    { id: 5, name: 'flat screen television', weight: 22.6796, image: 'tv.jpg' },
-                    { id: 6, name: 'dump truck', weight: 32000, image: 'dump-truck.jpg' },
-                    { id: 7, name: 'killer whale', weight: 2468.903, image: 'orca.jpg' }
+                    { id: 5, name: 'flat screen television', weight: 22.6796, image: 'tv.png' },
+                    { id: 6, name: 'dump truck', weight: 32000, image: 'dump-truck.png' },
+                    { id: 7, name: 'killer whale', weight: 2468.903, image: 'orca.png' }
                 ];
             };
             DataService.prototype.getDisks = function () {
@@ -33,7 +33,6 @@ var app;
             };
             return DataService;
         })();
-        services.DataService = DataService;
         angular.module('howManyFloppiesApp').service('dataService', [DataService]);
     })(services = app.services || (app.services = {}));
 })(app || (app = {}));

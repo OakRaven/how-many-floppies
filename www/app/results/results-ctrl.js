@@ -15,8 +15,8 @@ var app;
                 this.selectedUnit = $filter('filter')(dataFactory.getUnits(), { id: $stateParams.unit })[0];
                 var result = calculatorService.calculate(this.selectedDisk, this.quantity, this.selectedUnit);
                 this.items = $filter('itemFilter')(dataFactory.getItems(), result.weight);
-                this.slide = Math.floor(Math.random() * this.items.length);
-                this.item = this.items[this.slide];
+                var randomItemIndex = Math.floor(Math.random() * this.items.length);
+                this.item = this.items[randomItemIndex];
                 if (!settingsService.isMetric()) {
                     this.weight = result.weight / conversions.kgInLbs;
                     this.distance = result.distance / conversions.kmInMiles;
