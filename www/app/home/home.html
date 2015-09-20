@@ -1,20 +1,7 @@
 <ion-content>
 	<div class="home-view">
 		<div class="padding">
-		<h1 class="title">{{vm.title}}</h1>
-		<p>
-			Data... bits and bytes.  We store them, a LOT of them, on thumb
-			drives, tiny external hard drives and the like.  In the last deacde
-			or so, the storage capacity of these little data storage devices has
-			exploded. 
-		</p>
-		<p>
-			Not that long ago, our only option was to use floppy disks.  They 
-			came in various formats with various capcities.
-		</p>
-		<p>
-			In today's world it can be easy to take our modern devices for granted.
-		</p>
+			<h1 class="title">{{vm.title}}</h1>
 		</div>
 		<form>
 			<div class="row">
@@ -33,15 +20,10 @@
 
 			<div class="row">
 				<div class="col">
-					<a style="font-size: 1.5em;" ng-click="vm.calculate()" class="button button-full button-positive">Calculate</a>
+					<a style="font-size: 1.5em;" ng-click="vm.calculate()" class="button button-full button-positive">How Many Floppies?</a>
 				</div>
 			</div>
 		</form>
-	</div>
-	<div class="row">
-		<div class="col">
-			<h3>What's a floppy anyway?</h3>
-		</div>
 	</div>
 </ion-content>
 
@@ -49,3 +31,28 @@
 	<h1 class="title">What's a floppy?</h1>
 	<a href="#/settings" class="button button-icon icon ion-gear-b pull-right"></a>
 </div>
+
+<script id="app/home/about-modal.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-header-bar class="bar-stable">
+			<h1 class="title">Pockets full of storage</h1>
+		</ion-header-bar>
+		<ion-content class="padding">
+			<p>
+				Data... bits and bytes. We store them, a LOT of them, on thumb drives, tiny external hard drives and the like. In the last
+				deacde or so, the storage capacity of these little data storage devices has exploded.
+			</p>
+			<p>
+				Not that long ago, our only option was to use floppy disks. They came in various formats with various capcities.
+			</p>
+			<p>
+				In today's world it can be easy to take our modern devices for granted.
+			</p>
+			<div class="row">
+				<div class="col-offset-25 col-50">
+					<button class="button button-small button-positive button-full" ng-click="modal.hide()">Close</button>
+				</div>
+			</div>
+		</ion-content>
+	</ion-modal-view>
+</script>
