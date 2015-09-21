@@ -8,19 +8,14 @@
 		<p>{{vm.quantity | number:0}} {{vm.selectedUnit.label}} would be a whopping {{vm.result.floppyCount | number:0}} {{vm.selectedDisk.label}}
 			floppy disks.</p>
 		<p>
-			To put that into perspective, that would be an incredible {{vm.weight | massUnitConversion:vm.isMetric}}.
+			To put that into perspective, that would be an incredible {{vm.weight | massUnitConversion:vm.isMetric}}; approximately the weight of {{(vm.result.weight / vm.item.weight)|number:0}} 
+			{{ vm.item | itemPluralizeFilter:vm.result.weight }}!
 		</p>
 		<p>
 			If placed end-to-end, they would span {{vm.distance | distanceUnitConversion:vm.isMetric}}!
 		</p>
 		<p class="padding-top">
-			That would be approximately the same weight as {{(vm.result.weight / vm.item.weight)|number:0}} 
-			{{ vm.item | itemPluralizeFilter:vm.result.weight }}!
 			<img ng-src="img/{{vm.item.image}}" style="width: 100%;" />
 		</p>
 	</div>
 </ion-content>
-
-<div class="bar bar-footer bar-stable">
-	<a href="#/settings" class="button button-icon icon ion-gear-b pull-right"></a>
-</div>

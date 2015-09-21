@@ -12,7 +12,7 @@ var app;
                     { id: 3, name: 'professional wrestler', weight: 113.398, image: 'wrestler.png' },
                     { id: 4, name: 'dairy cow', weight: 680.389, image: 'cow.png' },
                     { id: 5, name: 'flat screen television', weight: 22.6796, image: 'tv.png' },
-                    { id: 6, name: 'dump truck', weight: 32000, image: 'dump-truck.png' },
+                    { id: 6, name: 'dump truck', weight: 32000, image: 'truck.png' },
                     { id: 7, name: 'killer whale', weight: 2468.903, image: 'orca.png' }
                 ];
             };

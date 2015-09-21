@@ -33,12 +33,16 @@ module app.controllers {
 				hardwareBackButtonClose: true
 			}).then((modal) => {
 				this.aboutModal = modal;
-				this.aboutModal.show();
+				// this.aboutModal.show();
 			});
 		}
 
 		calculate(): void {
 			this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
+		}
+		
+		selectUnit(unitId): void{
+			this.selectedUnit = unitId;
 		}
 	}
 

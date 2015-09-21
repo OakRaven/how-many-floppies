@@ -20,11 +20,14 @@ var app;
                     hardwareBackButtonClose: true
                 }).then(function (modal) {
                     _this.aboutModal = modal;
-                    _this.aboutModal.show();
+                    // this.aboutModal.show();
                 });
             }
             HomeController.prototype.calculate = function () {
                 this.$state.go('results', { quantity: this.quantity, unit: this.selectedUnit, disk: this.selectedDisk });
+            };
+            HomeController.prototype.selectUnit = function (unitId) {
+                this.selectedUnit = unitId;
             };
             return HomeController;
         })();
