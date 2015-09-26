@@ -5,30 +5,18 @@ var app;
         $stateProvider
             .state('home', {
             url: '/',
-            views: {
-                'main': {
-                    templateUrl: 'app/home/home.html',
-                    controller: 'HomeController as vm'
-                }
-            }
+            templateUrl: 'app/home/home.html',
+            controller: 'HomeController as vm'
         })
             .state('results', {
             url: '/results/:quantity/:unit/:disk',
-            views: {
-                'main': {
-                    templateUrl: 'app/results/results.html',
-                    controller: 'ResultsController as vm'
-                }
-            }
+            templateUrl: 'app/results/results.html',
+            controller: 'ResultsController as vm'
         })
             .state('settings', {
             url: '/settings',
-            views: {
-                'main': {
-                    templateUrl: 'app/settings/settings.html',
-                    controller: 'SettingsController as vm'
-                }
-            }
+            templateUrl: 'app/settings/settings.html',
+            controller: 'SettingsController as vm'
         });
         $urlRouterProvider.otherwise('/');
     })

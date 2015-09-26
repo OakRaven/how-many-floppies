@@ -1,38 +1,34 @@
-<ion-content>
-	<div class="home-view">
-		<div class="padding">
-			<h1 class="title">{{vm.title}}</h1>
-		</div>
-		<form>
-			<div class="row">
-				<div class="col">
-					Size:
-					<div>
-						<input type="text" ng-model="vm.quantity">
+<ion-view view-title="{{vm.title}}" hide-back-button="true">
+	<ion-content>
+		<div class="home-view">
+			<form>
+				<div class="row">
+					<div class="col">
+						Size:
+						<div>
+							<input type="text" ng-model="vm.quantity">
+						</div>
+					</div>
+					<div class="col">
+						Units:
+						<div>
+							<button style="width: 48%;" ng-click="vm.selectUnit(2);" ng-class="{'button-stable': vm.selectedUnit === 2, 'button-clear': vm.selectedUnit !== 2}"
+							class="button">GB</button>
+							<button style="width: 48%;" ng-click="vm.selectUnit(3);" ng-class="{'button-stable': vm.selectedUnit === 3, 'button-clear': vm.selectedUnit !== 3}"
+							class="button">TB</button>
+						</div>
 					</div>
 				</div>
-				<div class="col">
-					Units:
-					<div>
-						<button style="width: 48%;"
-							ng-click="vm.selectUnit(2);"
-							ng-class="{'button-stable': vm.selectedUnit === 2, 'button-clear': vm.selectedUnit !== 2}"
-						 class="button">GB</button>
-						<button style="width: 48%;"
-							ng-click="vm.selectUnit(3);"
-							ng-class="{'button-stable': vm.selectedUnit === 3, 'button-clear': vm.selectedUnit !== 3}" class="button">TB</button>
-					</div>
-				</div>
-			</div>
 
-			<div class="row">
-				<div class="col" style="text-align: center;">
-					<button ng-click="vm.calculate()" style="width: 100%;" class="button button-stable">How Many Floppies?</button>
+				<div class="row">
+					<div class="col" style="text-align: center;">
+						<button ng-click="vm.calculate()" style="width: 100%;" class="button button-stable">How Many Floppies?</button>
+					</div>
 				</div>
-			</div>
-		</form>
-	</div>
-</ion-content>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
 
 <script id="app/home/about-modal.html" type="text/ng-template">
 	<ion-modal-view>

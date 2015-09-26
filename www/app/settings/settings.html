@@ -1,16 +1,13 @@
-<div class="bar bar-header bar-stable">
-  <button class="button" ng-click="vm.goBack()">Back</button>
-  <h1 class="title">{{vm.title}}</h1>
-</div>
-
-<ion-content class="has-header">
-  <div class="padding">
-    <div class="list">
-      <div class="item item-divider">
-        Preferred Units
+<ion-view view-title="{{vm.title}}">
+  <ion-content>
+    <div class="padding">
+      <div class="list">
+        <div class="item item-divider">
+          Preferred Units
+        </div>
+        <ion-radio ng-model="vm.units" ng-value="'Imperial'">Imperial (miles, pounds)</ion-radio>
+        <ion-radio ng-model="vm.units" ng-value="'Metric'">Metric (kilometers, kilograms)</ion-radio>
       </div>
-      <ion-radio ng-model="vm.units" ng-value="'Imperial'">Imperial (miles, pounds)</ion-radio>
-      <ion-radio ng-model="vm.units" ng-value="'Metric'">Metric (kilometers, kilograms)</ion-radio>
     </div>
-  </div>
-</ion-content>
+  </ion-content>
+</ion-view>

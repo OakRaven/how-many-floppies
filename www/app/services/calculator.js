@@ -16,7 +16,6 @@ var app;
             };
             return CalculatorService;
         })();
-        services.CalculatorService = CalculatorService;
         angular.module('howManyFloppiesApp')
             .service('calculatorService', [CalculatorService])
             .constant('conversions', { kgInLbs: 0.453592, kmInMiles: 1.60934 });

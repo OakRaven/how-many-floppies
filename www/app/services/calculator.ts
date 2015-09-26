@@ -3,7 +3,7 @@ module app.services {
 		calculate(IDiskette, number, ISizeUnit): app.domain.IAnswer;
 	}
 
-	export class CalculatorService implements ICalculatorService {
+	class CalculatorService implements ICalculatorService {
 		calculate(disk: app.domain.IDiskette, quantity: number, unit: app.domain.ISizeUnit): app.domain.IAnswer {
 			var bytesInMb = Math.pow(1024, 2);
 			var gramsInKg = 1000;
